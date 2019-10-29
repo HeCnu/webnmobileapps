@@ -10,6 +10,22 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery3
+//= require jquery_ujs
 //= require rails-ujs
-//= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+	$(document).on("click", "#button_for_create_todo", function(){
+		$("#form_to_create_todo").submit();
+	});
+
+	$(document).on("click", "#button_for_show_form", function(){
+		$("#snh_form").css("visibility", "visible");
+	});
+
+	$(document).on("click", "#button_for_hide_form", function(){
+		$("#snh_form").css("visibility", "hidden");
+	});
+});
+

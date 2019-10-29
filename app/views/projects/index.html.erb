@@ -1,0 +1,27 @@
+<h1>Задачи</h1>
+
+<%= link_to '+', "#" , id: "button_for_show_form"%>
+
+<% @projects.each do |project| %>
+	<h2 style="font-size: 16px"><%= project.title%></h2>
+	<% project.todos.each do |todo| %>
+		<li><%= todo.text %></li>
+	<% end %>	
+<% end %>
+
+<div id="snh_form" style="visibility: hidden;">
+  <h2>Новая Задача</h2>
+  <%= form_for :todo, html: { id: "form_to_create_todo" }, url: todos_path, local: true do |form| %>
+    <p>
+      <%= form.text_field :text, placeholder: "Название Задачи..." %>
+    </p>
+    <p>
+      <%= form.collection_select(:project_id, @projects, :id, :title) %>
+    </p>
+    <p>
+      <%= link_to 'Cancel', "#", id: "button_for_hide_form"%>
+      <%= link_to 'OK', "#", id: "button_for_create_todo" %>
+    </p>
+
+  <% end %>
+</div>
