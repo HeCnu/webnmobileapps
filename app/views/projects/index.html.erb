@@ -1,27 +1,52 @@
-<h1>Задачи</h1>
-
-<%= link_to '+', "#" , id: "button_for_show_form"%>
-
-<% @projects.each do |project| %>
-	<h2 style="font-size: 16px"><%= project.title%></h2>
-	<% project.todos.each do |todo| %>
-		<li><%= todo.text %></li>
-	<% end %>	
-<% end %>
-
-<div id="snh_form" style="visibility: hidden;">
-  <h2>Новая Задача</h2>
-  <%= form_for :todo, html: { id: "form_to_create_todo" }, url: todos_path, local: true do |form| %>
-    <p>
-      <%= form.text_field :text, placeholder: "Название Задачи..." %>
-    </p>
-    <p>
-      <%= form.collection_select(:project_id, @projects, :id, :title) %>
-    </p>
-    <p>
-      <%= link_to 'Cancel', "#", id: "button_for_hide_form"%>
-      <%= link_to 'OK', "#", id: "button_for_create_todo" %>
-    </p>
-
-  <% end %>
+<div class="header">
+  <div class="header_title">
+    <h1>Задачи</h1>
+  </div>
+  <div class="header_plus">
+    <%= link_to image_tag("white_plus.png", size: "50x50", border: 0), "#" , id: "button_for_show_form"%>
+  </div>
 </div>
+
+<div class="container">
+  <div class="task_cards row">
+    <% @projects.each do |project| %>
+      <div class=" no-padding col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="task_card">
+        	<div class="task_card_title">
+            <p><%= project.title%></p>
+          </div>
+          <div class="task_card_todos">
+          	<% project.todos.each do |todo| %>
+              <div class="task_card_todo">
+                <%= form_for :todo, url: todo_path(todo), method: :patch, html: { id: "form_to_update_todo_" + todo.id.to_s}, local: true do |form| %>
+                  <%= form.check_box :isCompleted, { checked: todo.isCompleted, id: todo.id, class: "todo_checker"}, "true", "false" %>
+                <% end %>
+            		<li class="todo_text" id="todo_text_<%= todo.id %>"><%= todo.text %></li>
+              </div>
+          	<% end %>	
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>  
+</div>
+
+<div id="myModal" class="modal">
+
+ 
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Новая Задача</h2>
+    </div>
+    <div class="modal-body">
+      <%= form_for :todo, html: { id: "form_to_create_todo" }, url: todos_path, local: true do |form| %>
+        <%= form.text_field :text, placeholder: "Название Задачи...", class: "form_input form-control" %>
+        <%= form.text_field :isCompleted, placeholder: "isCompleted", value: "false", style: "display: none" %>
+        <%= form.collection_select(:project_id, @projects, :id, :title, {}, {class: "form_input form-control"}) %>
+        <div class="buttons row">
+          <%= link_to 'Отмена', "#", id: "button_for_hide_form", class: "col spec_button btn btn-secondary" %>
+          <%= link_to 'OK', "#", id: "button_for_create_todo", class: "col spec_button btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>

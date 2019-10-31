@@ -1,3 +1,133 @@
 // Place all the styles related to the Projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.header {
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    background-color: #4ad8d1;
+    padding: 10px;
+    margin-bottom: 40px;
+}
+
+.header_title {
+    display: inline-block;
+    height: 50px;
+}
+
+.header_plus {
+    float: right;
+    display: inline-block;
+    height: 50px;
+}
+
+.task_card {
+    border: 1px solid #e6e6e6;
+    margin: 10px 5px;
+    padding: 0;
+    box-shadow: 5px 5px 8px -4px #c1c0c0;
+}
+
+.task_card_todos {
+    margin: 5px;
+}
+
+.task_card_todo {
+    margin: 10px 0px;
+}
+
+.task_card_title {
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.task_card_title p {
+    padding: 0px;
+    margin: 0;
+}
+
+.icheckbox_square-blue {
+    display: inline-block;
+    float: left;
+    margin: 5px;
+}
+
+.todo_text {
+    display: inline-block;
+    list-style: none;
+    width: 88%;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    text-align: center;
+}
+
+.modal-header h2 {
+    width: 100%;
+    font-size: 20px;
+    margin: 10px;
+}
+
+.modal-body {
+	padding: 10px;
+}
+
+.form_input {
+    margin: 5px 0;
+    border-radius: 0;
+}
+
+.buttons{
+    width: 100%;
+    margin: auto;
+}
+
+.spec_button{
+	margin: 0 2px;
+	border-radius: 0;
+}
+
+#button_for_create_todo {
+    background-color: #4ad8d1;
+    border-color: #4ad8d1;
+}
